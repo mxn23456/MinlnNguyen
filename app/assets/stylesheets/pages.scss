@@ -1,0 +1,24 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.Welcome {
+	color: black;
+	border: 5px solid blue;
+	text-align: center;
+}
+
+.Welcome .Name{
+	color: red;
+}
+
+.NavSidebar{
+	position: absolute;
+	top: 179px;
+	left: 0px;
+	padding: 5px 15px 0px 15px;
+	width: 203px;
+	min-height: 1500px;
+	background-color:#eee;
+	font-size: small;
+}
