@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	resources :investments, :constraints => { :id => /[^\/]+/ }
+#	resources :investments, :constraints => { :id => /[^\/]+/ }
 
 	#  get 'pages/home'
 

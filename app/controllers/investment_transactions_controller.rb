@@ -21,6 +21,7 @@ class InvestmentTransactionsController < ApplicationController
   # GET /investmetns/investment_id/investment_transactions/new
   def new
     @investment_transaction = @investment.investment_transactions.new
+   # @investment_transaction = InvestmentTransaction.new
   end
 
   # GET /investmetns/investment_id/investment_transactions/1/edit
@@ -31,10 +32,11 @@ class InvestmentTransactionsController < ApplicationController
   # POST /investmetns/investment_id/investment_transactions.json
   def create
     @investment_transaction = @investment.investment_transactions.new(investment_transaction_params)
+	@investment_transaction[:investment_desc] = params[:investment_id]
 
     respond_to do |format|
       if @investment_transaction.save
-        format.html { redirect_to @investment_transaction, notice: 'Investment transaction was successfully created.' }
+        format.html { redirect_to investment_investment_transactions_url(@investment), notice: 'Investment transaction was successfully created.' }
         #format.json { render :show, status: :created, location: @investment_transaction }
         format.json { render :show, status: :created }
       else
@@ -63,7 +65,7 @@ class InvestmentTransactionsController < ApplicationController
   def destroy
     @investment_transaction.destroy
     respond_to do |format|
-      format.html { redirect_to investment_transactions_url, notice: 'Investment transaction was successfully destroyed.' }
+      format.html { redirect_to investment_investment_transactions_url(@investment), notice: 'Investment transaction was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
