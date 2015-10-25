@@ -1,5 +1,5 @@
 # SQLite version 3.x
-#   gem install sqlite3
+#gem install sqlite3
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
@@ -48,25 +48,32 @@
 #    password: <%= ENV['RUBY-GETTING-STARTED_DATABASE_PASSWORD'] %>
 
 #Postgres DB setup
+#development:
+#    adapter: postgresql
+#    encoding: unicode
+#    database: webapp
+#    pool: 5
+#    username: mitchell
+#    password: P@ssw0rd
 development:
-    adapter: postgresql
-    encoding: unicode
-    database: webapp
+    #  <<: *default
+    adapter: sqlite3
     pool: 5
-    username: mitchell
-    password: P@ssw0rd
+    timeout: 5000
+    database: db/development.sqlite3
 
-test:
-    adapter: postgresql
-    encoding: unicode
-    database: webapp 
-    pool: 5
-    username: mitchell
-    password: P@ssw0rd
-  
-production:
-    #    <<: *default
-    database: webapp
-    username: myapp 
-    password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
+
+    #test:
+    #    adapter: postgresql
+    #    encoding: unicode
+    #    database: webapp 
+    #    pool: 5
+    #    username: mitchell
+    #    password: P@ssw0rd
+
+    production:
+        #    <<: *default
+        database: webapp
+        username: myapp 
+        password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
 

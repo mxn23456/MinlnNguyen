@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016194036) do
+ActiveRecord::Schema.define(version: 20151022023851) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "inv_trans", force: :cascade do |t|
+    t.integer  "amount"
+    t.string   "transaction_desc"
+    t.date     "transaction_date"
+    t.integer  "investment_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "investment_transactions", force: :cascade do |t|
     t.integer  "amount"
@@ -33,15 +39,6 @@ ActiveRecord::Schema.define(version: 20151016194036) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "investments", ["investment_desc"], name: "index_investments_on_investment_desc", unique: true, using: :btree
+  add_index "investments", ["investment_desc"], name: "index_investments_on_investment_desc", unique: true
 
-  create_table "widgets", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "stock"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_foreign_key "investment_transactions", "investments", column: "investment_desc", primary_key: "investment_desc"
 end

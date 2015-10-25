@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inv desc:</strong>
+  <%= @inv.inv_desc %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @inv.notes %>
+</p>
+
+<%= link_to 'Edit', edit_inv_path(@inv) %> |
+<%= link_to 'Back', invs_path %>

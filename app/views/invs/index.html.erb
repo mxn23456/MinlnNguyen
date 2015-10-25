@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Invs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Inv desc</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invs.each do |inv| %>
+      <tr>
+        <td><%= inv.inv_desc %></td>
+        <td><%= inv.notes %></td>
+        <td><%= link_to 'Show', inv %></td>
+        <td><%= link_to 'Edit', edit_inv_path(inv) %></td>
+        <td><%= link_to 'Destroy', inv, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inv', new_inv_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :invs
+  resources :inv_trans
 #	resources :investments, :constraints => { :id => /[^\/]+/ }
 
 	#  get 'pages/home'
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
 	#match 'some_action/:id' => 'controller#action', :constraints  => { :id => /[0-z\.]+/ }
 
 	get 'pages/about'
+
+	get 'pages/blogs'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".

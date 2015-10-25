@@ -13,4 +13,16 @@ class InvestmentTransaction < ActiveRecord::Base
 		return res
 	end
 
+	def get_total_spent(investment_desc)
+	end
+
+	def get_monthly_transactions(investment_desc,month)
+	end
+
+
+
+
+
+
+
 end

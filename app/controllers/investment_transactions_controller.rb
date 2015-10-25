@@ -11,6 +11,9 @@ class InvestmentTransactionsController < ApplicationController
 	#	than the asked investment_id. Fix this problem using byebug when possible
 	@investment_transactions = InvestmentTransaction.get_transactions_for_investment(@investment_transactions,
 																					 params[:investment_id])
+ 
+	#Perhaps the following line fix the solution 
+#	@inv_trans = @investment.inv_trans.all 
   end
 
   # GET /investmetns/investment_id/investment_transactions/1
@@ -21,7 +24,9 @@ class InvestmentTransactionsController < ApplicationController
   # GET /investmetns/investment_id/investment_transactions/new
   def new
     @investment_transaction = @investment.investment_transactions.new
-   # @investment_transaction = InvestmentTransaction.new
+	
+	#Solution to bad relationship between investment_transaction and investment
+#	@inv_tran = @investment.inv_trans.new
   end
 
   # GET /investmetns/investment_id/investment_transactions/1/edit
@@ -33,6 +38,10 @@ class InvestmentTransactionsController < ApplicationController
   def create
     @investment_transaction = @investment.investment_transactions.new(investment_transaction_params)
 	@investment_transaction[:investment_desc] = params[:investment_id]
+    
+	#Solution to bad relationship between investment_transaction and investment
+#	@inv_tran = @investment.inv_trans.new(investment_transaction_params) #NOTE not sure if the next step is necessary
+#	@inv_tran.save
 
     respond_to do |format|
       if @investment_transaction.save
