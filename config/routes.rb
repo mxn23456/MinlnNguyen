@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :invs
-  resources :inv_trans
 #	resources :investments, :constraints => { :id => /[^\/]+/ }
 
 	#  get 'pages/home'
@@ -45,10 +43,13 @@ Rails.application.routes.draw do
 	#     resource :seller
 	#   end
 	#
-	resources :investments, :constraints => { :id => /[^\/]+/ } do
-		resources :investment_transactions
-	end
+#	resources :investments, :constraints => { :id => /[^\/]+/ } do
+#		resources :investment_transactions
+#	end
 
+  resources :invs do
+	  resources :inv_trans
+  end
 
 	# Example resource route with more complex sub-resources:
 	#   resources :products do

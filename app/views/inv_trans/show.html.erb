@@ -17,8 +17,8 @@
 
 <p>
   <strong>Investment:</strong>
-  <%= @inv_tran.investment_id %>
+  <%= @inv_tran.inv_id %>
 </p>
 
-<%= link_to 'Edit', edit_inv_tran_path(@inv_tran) %> |
-<%= link_to 'Back', inv_trans_path %>
+<%= link_to 'Edit', edit_inv_inv_tran_path(@inv,@inv_tran) %> |
+<%= link_to 'Back', inv_inv_trans_path(@inv) %>

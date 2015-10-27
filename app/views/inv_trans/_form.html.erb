@@ -1,4 +1,4 @@
-<%= form_for(@inv_tran) do |f| %>
+<%= form_for(@inv_tran, method: :post, url:inv_inv_trans_path(params[:inv_id])) do |f| %>
   <% if @inv_tran.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inv_tran.errors.count, "error") %> prohibited this inv_tran from being saved:</h2>
@@ -24,8 +24,8 @@
     <%= f.date_select :transaction_date %>
   </div>
   <div class="field">
-    <%= f.label :investment_id %><br>
-    <%= f.number_field :investment_id %>
+    <%= f.label :inv_id %><br>
+    <%= f.number_field :inv_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

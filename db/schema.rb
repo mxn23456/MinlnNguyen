@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022023851) do
+ActiveRecord::Schema.define(version: 20151026212934) do
 
   create_table "inv_trans", force: :cascade do |t|
     t.integer  "amount"
     t.string   "transaction_desc"
     t.date     "transaction_date"
-    t.integer  "investment_id"
+    t.integer  "inv_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -40,5 +40,12 @@ ActiveRecord::Schema.define(version: 20151022023851) do
   end
 
   add_index "investments", ["investment_desc"], name: "index_investments_on_investment_desc", unique: true
+
+  create_table "invs", force: :cascade do |t|
+    t.string   "inv_desc",   null: false
+    t.text     "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
