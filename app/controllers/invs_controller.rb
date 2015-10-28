@@ -7,6 +7,10 @@ class InvsController < ApplicationController
     @invs = Inv.all
   end
 
+  # GET /invs/get_month_of_year_transactions.json
+  def get_month_of_year_transactions
+  end
+
   # GET /invs/1
   # GET /invs/1.json
   def show

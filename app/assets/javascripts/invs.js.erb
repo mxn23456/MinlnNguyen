@@ -1,0 +1,49 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+#
+#
+
+
+
+#procedures for updating the cashflow table:
+var month_year_selector = $(document).getElementById("month_year_selector");
+#1) get the "value" from "#date_month"
+var date_month = month_year_selector.getElementById("date_month");
+var selected_month = date_month.options[date_month.selectedIndex].value;
+#2) get the "value" from "#date_year"
+var date_year= month_year_selector.getElementById("date_year");
+var selected_year= date_year.options[date_year.selectedIndex].value;
+#3) perform calculation to find out income, expense, net
+var currentMonthTrans = function getMonthOfYearTrans(date_month,date_year) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			document.getElementById("demo").innerHTML = xhttp.responseText;
+		}
+	}
+	xhttp.open("GET", "get_month_of_year_transactions.json", true);
+	xhttp.send("month": date_month,"year": date_year );
+	serverResponse = xhttp.responseText;
+	#what we want to continue doing is:
+	#a) get the text response in json in which we get all of the transactions for this month
+	#b) then we convert the json text to actual json
+	#c) then we loop through each transaction entry and perform summation of expense or income
+}; 
+
+
+<% @currentMonthTrans = InvTran.getMonthOfYearTrans(date_month, date_year) %>
+<% @income=0 %>
+<% @expense=0 %>
+<%	@net=0 %>
+<%	@currentMonthTrans.each do |tran| %>
+	<%		if(tran.amount >= 0) %>
+		<%			@income += tran.amount%>
+	<%		else %>
+		<%			@expense += tran.amount %>
+	<%		end %>
+	<%		@net= @income + @expense %>
+<%	end %> 
+
+#4) update those three value to each "td" tag for the given table
+$("#cash_flow_table").update("<%= escape_javascript(render(@invs)) %>");

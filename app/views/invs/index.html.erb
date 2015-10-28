@@ -46,23 +46,40 @@
 					<span class="text-muted">Something else</span>
 				</div>
 			</div>
-			<h2 class="sub-header">This <select class="MonthSelector">
-					<option selected="selected"> Month</option>
-			</select>'s Cash Flow</h2>
+
+			<%= form_tag controller: "invs", :action => :get_cash_flow, :method => :get, :remote => true do %>
+				<h2 class="sub-header" id="month_year_selector">This 
+				<%= select_month(Date.today) %>
+				of 
+				<%= select_year(Date.today, start_year: 2000, end_year: 2020) %>
+				's Cash Flow</h2>
+			<% end %>
+			<% @currentMonthTrans = InvTran.getMonthOfYearTrans(Date.today.month, Date.today.year) %>
+			<% @income=0 %>
+			<% @expense=0 %>
+			<%	@net=0 %>
+			<%	@currentMonthTrans.each do |tran| %>
+				<%		if(tran.amount >= 0) %>
+				<%			@income += tran.amount%>
+		<%		else %>
+				<%			@expense += tran.amount %>
+		<%		end %>
+			<%		@net= @income + @expense %>
+		<%	end %> 
 			<div class="table-responsive">
-				<table class="table table-striped">
+				<table class="table table-striped" id="cash_flow_table">
 					<thead>
 						<tr>
 							<th>Income</th>
 							<th>Expense</th>
-							<th>Total</th>
+							<th>Net</th>
 						</tr>
 					</thead>
 					<tbody>
 					<tr>
-						<td> +x </td>
-						<td> -y </td>
-						<td> z </td>
+						<td><%= @income %></td>
+						<td><%= @expense %> </td>
+						<td><%= @net %></td>
 					</tr>
 					</tbody>
 				</table>
