@@ -6,10 +6,12 @@ ruby '2.2.3'
 gem 'rails', '4.2.4'
 
 # use postgres db
-gem 'pg'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', :group => [:development,:test]
+group :production do
+	gem 'pg'
+end
 
 # Use paperclip to attach images
 gem "paperclip", "~> 4.3"
