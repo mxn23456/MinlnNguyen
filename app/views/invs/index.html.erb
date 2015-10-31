@@ -1,11 +1,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Reports</a></li>
-				<li><a href="#">Analytics</a></li>
-				<li><a href="#">Export</a></li>
+			<ul class="nav nav-sidebar" id="navSidebar">
+				<li class="active" id= "overview_link"><a href="#main">Overview </a></li>
+				<li id="reports_link"><a href="#reports_content">Reports<span class="sr-only">(current)</span></a></li>
+				<li id="analytics_link"><a href="#analytics_content">Analytics</a></li>
+				<li id="export_link"><a href="#export_content">Export</a></li>
 			</ul>
 			<!--			<ul class="nav nav-sidebar">
 				<li><a href="">Nav item</a></li>
@@ -21,7 +21,8 @@
 			</ul>
 -->
 		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
 			<h1 class="page-header">Dashboard</h1>
 			<h2 class="sub-header">Recent Activities</h2>
 			<div class="row placeholders">
@@ -47,25 +48,25 @@
 				</div>
 			</div>
 
-			<%= form_tag controller: "invs", :action => :get_cash_flow, :method => :get, :remote => true do %>
-				<h2 class="sub-header" id="month_year_selector">This 
-				<%= select_month(Date.today) %>
-				of 
-				<%= select_year(Date.today, start_year: 2000, end_year: 2020) %>
-				's Cash Flow</h2>
-			<% end %>
+			<%#= form_tag controller: "invs", :action => :get_cash_flow, :method => :get, :remote => true do %>
+			<h2 class="sub-header" id="month_year_selector">Cash Flow for 
+				<%= select_month(Date.today, options = {},
+				html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>
+				<%= select_year(Date.today, options = {start_year: 2000, end_year: 2020},html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>
+			</h2>
+			<%# end %>
 			<% @currentMonthTrans = InvTran.getMonthOfYearTrans(Date.today.month, Date.today.year) %>
 			<% @income=0 %>
 			<% @expense=0 %>
 			<%	@net=0 %>
 			<%	@currentMonthTrans.each do |tran| %>
-				<%		if(tran.amount >= 0) %>
-				<%			@income += tran.amount%>
-		<%		else %>
-				<%			@expense += tran.amount %>
-		<%		end %>
+			<%		if(tran.amount >= 0) %>
+			<%			@income += tran.amount%>
+			<%		else %>
+			<%			@expense += tran.amount %>
+			<%		end %>
 			<%		@net= @income + @expense %>
-		<%	end %> 
+			<%	end %> 
 			<div class="table-responsive">
 				<table class="table table-striped" id="cash_flow_table">
 					<thead>
@@ -77,16 +78,16 @@
 					</thead>
 					<tbody>
 					<tr>
-						<td><%= @income %></td>
-						<td><%= @expense %> </td>
-						<td><%= @net %></td>
+						<td id="monthly_income"><%= @income %></td>
+						<td id="monthly_expense"><%= @expense %> </td>
+						<td id="monthly_net"><%= @net %></td>
 					</tr>
 					</tbody>
 				</table>
 			</div>
 
 			<h2 class="sub-header">Listing of Investments</h2>
-			<div class="table-responsive">
+			<div class="table-responsive" id="invs_all">
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -99,18 +100,31 @@
 					<tbody>
 					<% num=1 %>
 					<% @invs.each do |investment| %>
-						<tr>
+					<tr>
 						<td><%= num %></td>
 						<td><%= investment.inv_desc %></td>
 						<td><%= investment.inv_trans.sum("amount") %></td>
 						<td><%= link_to 'Details', investment %></td>
 						<% num = num + 1 %>
 					</tr>
-				<% end %>
+					<% end %>
 					</tbody>
 				</table>
 			</div>
 		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="reports_content">
+			<p> Contents for report tabs goes here </p>
+		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="analytics_content">
+			<p> Contents for analytics tabs goes here </p>
+		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="export_content">
+			<p> Contents for export tabs goes here </p>
+		</div>
+
 	</div>
 </div>
 

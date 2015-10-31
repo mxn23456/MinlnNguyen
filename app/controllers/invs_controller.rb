@@ -1,5 +1,5 @@
 class InvsController < ApplicationController
-  before_action :set_inv, only: [:show, :edit, :update, :destroy]
+	before_action :set_inv, only: [:show, :edit, :update, :destroy]
 
   # GET /invs
   # GET /invs.json
@@ -7,8 +7,18 @@ class InvsController < ApplicationController
     @invs = Inv.all
   end
 
-  # GET /invs/get_month_of_year_transactions.json
+  # POST /invs/get_month_of_year_transactions.json
   def get_month_of_year_transactions
+	month = cash_flow_params[:month]	
+	year = cash_flow_params[:year]
+	@trans = InvTran.getMonthOfYearTrans(month,year)
+#	@trans.inspect
+	#@trans = InvTran.all
+   # respond_to do |format|
+   #     format.json { render json: @trans}
+   # end
+	
+         render json: @trans
   end
 
   # GET /invs/1
@@ -75,4 +85,8 @@ class InvsController < ApplicationController
     def inv_params
       params.require(:inv).permit(:inv_desc, :notes)
     end
+
+	def cash_flow_params
+	  params.require(:cash_flow).permit(:month,:year)
+	end
 end

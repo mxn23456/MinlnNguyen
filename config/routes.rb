@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 	get 'pages/blogs'
 
-	get 'invs/get_cash_flow'
+	post 'invs/get_month_of_year_transactions'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
