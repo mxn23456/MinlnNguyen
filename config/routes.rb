@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 	post 'invs/get_month_of_year_transactions'
 
+	post 'invs/get_recent_invs'
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
 
   resources :invs do
 	  resources :inv_trans
+	  resources :images
   end
 
 	# Example resource route with more complex sub-resources:

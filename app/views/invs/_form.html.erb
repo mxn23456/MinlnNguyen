@@ -1,4 +1,4 @@
-<%= form_for(@inv) do |f| %>
+<%= form_for(@inv, html: {multipart: true}) do |f| %>
   <% if @inv.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inv.errors.count, "error") %> prohibited this inv from being saved:</h2>
@@ -9,7 +9,12 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
+
+<div class="field">
+	 <%= f.label :image%><br>
+    <%= f.file_field :image%>
+</div>
 
   <div class="field">
     <%= f.label :inv_desc %><br>
