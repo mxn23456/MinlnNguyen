@@ -35,19 +35,41 @@ function updateCashFlow(year,month){
 	request.send(formData);
 }
 
-/*
-   The following function toggle the highlight of the click  button on and makes the others go off
-   Algorighm:
-   a) select the element that is clicked on
-   b) set the element's class to active while the rest becomes inactive
- */
-
+/* 
+   behaviors for the page once the page is loaded
+   */
 $(document).ready(function() {
+    //The following function toggle the highlight of the click  button on and makes the others go off
 	$('#navSidebar li').click(function() {
 		$(this).toggleClass('active');
 		//set the  other classes inactive
 		$(this).siblings().attr( "class", "" );	
 	});
+
+	//The following function load the "recent activity" carousel with related images
+	//algorithm:
+	//a) get the lastest investments from server
+	//b) get the image sources for these investments and replaceWith current images
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var invs = JSON.parse(request.responseText);
+			for(i=0; i<Object.keys(invs).length; i++){
+				//replace by: get image source, replace with recent0 first, then recent1,recent2,...
+				var image_id = "#recent" + i;
+				$(image_id).attr('src',invs[i].featured_image_url);
+			}
+		}
+	}
+	request.open("post", "invs/get_recent_invs.json");
+	var formData = new FormData();
+	request.setRequestHeader("Content-type", "application/json");
+	var formData = '{"recent_invs":{"num_of_last_invs":8}}';
+	request.send(formData);
 });
+
+$('#myCarousel').carousel({
+	  interval:0 
+})
 
 
