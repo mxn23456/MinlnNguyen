@@ -1,0 +1,124 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+         <ul class="nav nav-sidebar" id="navSidebar">
+            <li class="active"><a href="#main">Overview <span class="sr-only">(current)</span></a></li>
+            <li id="reports_link"><a href="">Reports</a></li>
+            <li id="analytics_link"><a href="#">Analytics</a></li>
+            <li id="export_link"><a href="#">Export</a></li>
+         </ul>
+         <!--			<ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            </ul>
+            -->
+      </div>
+      <script>
+         $(document).ready(function() {
+         		$('#navSidebar').tabs({
+         show: 'fadeIn',
+         hide: 'fadeOut'	
+         });
+         		});
+         		
+      </script>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
+         <h1 class="page-header">Dashboard</h1>
+         <h2 class="sub-header">Recent Activities</h2>
+         <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+               <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+               <h4>Label</h4>
+               <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+               <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+               <h4>Label</h4>
+               <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+               <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+               <h4>Label</h4>
+               <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+               <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+               <h4>Label</h4>
+               <span class="text-muted">Something else</span>
+            </div>
+         </div>
+         <%#= form_tag controller: "invs", :action => :get_cash_flow, :method => :get, :remote => true do %>
+         <h2 class="sub-header" id="month_year_selector">This 
+            <%= select_month(Date.today, options = {},
+               html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>
+            of 
+            <%= select_year(Date.today, options = {start_year: 2000, end_year: 2020},html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>
+            's Cash Flow
+         </h2>
+         <%# end %>
+         <% @currentMonthTrans = InvTran.getMonthOfYearTrans(Date.today.month, Date.today.year) %>
+         <% @income=0 %>
+         <% @expense=0 %>
+         <%	@net=0 %>
+         <%	@currentMonthTrans.each do |tran| %>
+         <%		if(tran.amount >= 0) %>
+         <%			@income += tran.amount%>
+         <%		else %>
+         <%			@expense += tran.amount %>
+         <%		end %>
+         <%		@net= @income + @expense %>
+         <%	end %> 
+         <div class="table-responsive">
+            <table class="table table-striped" id="cash_flow_table">
+               <thead>
+                  <tr>
+                     <th>Income</th>
+                     <th>Expense</th>
+                     <th>Net</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td id="monthly_income"><%= @income %></td>
+                     <td id="monthly_expense"><%= @expense %> </td>
+                     <td id="monthly_net"><%= @net %></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <h2 class="sub-header">Listing of Investments</h2>
+         <div class="table-responsive" id="invs_all">
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>#</th>
+                     <th>Investment desc</th>
+                     <th>Net Cash Flow</th>
+                     <th colspan="1"></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% num=1 %>
+                  <% @invs.each do |investment| %>
+                  <tr>
+                     <td><%= num %></td>
+                     <td><%= investment.inv_desc %></td>
+                     <td><%= investment.inv_trans.sum("amount") %></td>
+                     <td><%= link_to 'Details', investment %></td>
+                     <% num = num + 1 %>
+                  </tr>
+                  <% end %>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
