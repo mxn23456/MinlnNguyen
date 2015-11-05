@@ -1,0 +1,29 @@
+<%= form_for(@investment_transaction, method: :post, url:investment_investment_transactions_path(params[:investment_id])) do |f| %>
+  <% if @investment_transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@investment_transaction.errors.count, "error") %> prohibited this investment_transaction from being saved:</h2>
+
+      <ul>
+      <% @investment_transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_desc %><br>
+    <%= f.text_field :transaction_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_date %><br>
+    <%= f.date_select :transaction_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

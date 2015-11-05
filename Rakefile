@@ -7,3 +7,4 @@ Rails.application.load_tasks
 
 # Allow rake to show full error strack trace
 Rake.application.options.trace = true
+
