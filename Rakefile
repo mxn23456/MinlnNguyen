@@ -4,3 +4,6 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+# Allow rake to show full error strack trace
+Rake.application.options.trace = true
