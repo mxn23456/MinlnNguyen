@@ -43,7 +43,7 @@ gem 'autoprefixer-rails'
 
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
