@@ -30,36 +30,43 @@
 					<div class="well">
 						<div id="myCarousel" class="carousel slide">
 							<div class="carousel-inner">
+								<% currentIndex = 0 %>
 								<div class="item active">
 									<div class="row">
-										<div class="col-sm-3" ><%= image_tag @last8Invs[0].image.url(:medium) %>
+										<% while currentIndex < 4 %>
+										<div class="col-sm-3">
+											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
+												<% if @last8Invs[currentIndex].image.exists? %>
+												<%= image_tag @last8Invs[currentIndex].image.url(:medium), size: "250x250"	%>
+												<% else %>
+												<%= image_tag "http://placehold.it/250x250" %>
+												<% end %> 
+												<p align="center"> <%= @last8Invs[currentIndex].inv_desc %></p>
+											<% end %>
 										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[1].image.url(:medium) %>
-										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[2].image.url(:medium) %>
-										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[2].image.url(:medium) %>
-										</div>
+										<% currentIndex = currentIndex + 1 %>
+										<% end %>
 									</div>
 								</div>
 								<div class="item">
 									<div class="row">
-										<div class="col-sm-3"><%= image_tag @last8Invs[4].image.url(:medium) %>
+										<% while currentIndex < 8 %>
+										<div class="col-sm-3">
+											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
+												<% if @last8Invs[currentIndex].image.exists? %>
+												<%= image_tag @last8Invs[currentIndex].image.url(:medium),size: "250x250" %>
+												<% else %>
+												<%= image_tag "http://placehold.it/250x250" %>
+												<% end %> 
+												<p align="center"> <%= @last8Invs[currentIndex].inv_desc %></p>
+											<% end %>
 										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[5].image.url(:medium) %>
-</a>
-										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[6].image.url(:medium) %>
-</a>
-										</div>
-										<div class="col-sm-3"><%= image_tag @last8Invs[7].image.url(:medium) %>
-</a>
-										</div>
+										<% currentIndex = currentIndex + 1 %>
+										<% end %>
 									</div>
 								</div>
 							</div>
 							<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-
 							<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 						</div>
 						<!--/myCarousel-->
@@ -67,7 +74,7 @@
 					<!--/well-->
 				</div>
 			</div>
-
+		
 			<h2 class="sub-header" id="month_year_selector">Cash Flow for 
 				<%= select_month(Date.today, options = {},
 				html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>

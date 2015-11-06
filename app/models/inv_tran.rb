@@ -1,5 +1,5 @@
 class InvTran < ActiveRecord::Base
-	belongs_to :inv, dependent: :destroy
+	belongs_to :inv
 
 	def self.getMonthOfYearTrans(month,year)
 		temp_date = Date.new(year,month,1)
