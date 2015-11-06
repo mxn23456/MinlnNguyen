@@ -1,61 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<div align="center" class="row">
+		<p id="notice"><%= notice %></p>
 
-<p>
-<strong>Inv desc:</strong>
-<%= @inv.inv_desc %>
-</p>
+		<p><strong><%= @inv.inv_desc %></strong></p>
 
-<p>
-<strong>Notes:</strong>
-<%= @inv.notes %>
-</p>
+		<p>
+		<%= image_tag @inv.image.url(:medium)%>
+		</p>
 
-<p>
-<strong>Image</strong><br>
-<%#= image_tag @inv.image.url(:medium)%>
-<%= image_tag @inv.image.url(:medium)%>
-<%#= image_tag @inv.image.url(:medium)%>
-</p>
+		<p>
+		<strong>Notes:</strong>
+		<%= @inv.notes %>
+		</p>
 
 
+		<h1>Transactions  <button type="button" class="btn btn-primary">Add New</button> </h1>
 
-<h1>Listing Inv Trans</h1>
+		<div class="table-responsive">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th colspan="1"></th>
+					</tr>
+				</thead>
 
-<table>
-	<thead>
-		<tr>
-			<th>Amount</th>
-			<th>Transaction desc</th>
-			<th>Transaction date</th>
-			<th>Investment</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
+				<tbody>
+				<% @total = 0 %>
+				<% @inv.inv_trans.all.each do |inv_tran| %>
+				<tr>
+					<td><%= inv_tran.transaction_date %></td>
+					<td><%= inv_tran.amount %></td>
+					<td><%= inv_tran.transaction_desc %></td>
+					<td><%= link_to 'Destroy', inv_inv_tran_path(@inv,inv_tran), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<% @total = @total + inv_tran.amount %>
+				</tr>
+				<% end %>
+				</tbody>
+			</table>
 
-	<tbody>
-	<% @total = 0 %>
-	<% @inv.inv_trans.all.each do |inv_tran| %>
-	<tr>
-		<td><%= inv_tran.amount %></td>
-		<td><%= inv_tran.transaction_desc %></td>
-		<td><%= inv_tran.transaction_date %></td>
-		<td><%= inv_tran.inv_id %></td>
-		<td><%= link_to 'Show', inv_inv_tran_path(@inv,inv_tran) %></td>
-		<td><%= link_to 'Edit', edit_inv_inv_tran_path(@inv,inv_tran) %></td>
-		<td><%= link_to 'Destroy', inv_inv_tran_path(@inv,inv_tran), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		<% @total = @total + inv_tran.amount %>
-	</tr>
-	<% end %>
-	</tbody>
-</table>
+			<br>
 
-<br>
-
-<h1> Total </h1>
-<p><%= @total %></p>
-
-
-
-<%= link_to 'Edit', edit_inv_path(@inv) %> |
-<%= link_to 'Back', invs_path %> |
-<%= link_to 'Delete', inv_path(@inv), method: :delete, data: {confirm: 'Are you sure?'} %>
+			<h1> Total </h1>
+			<p><%= @total %></p>
+			<%= link_to 'Edit', edit_inv_path(@inv) %> |
+			<%= link_to 'Back', invs_path %> |
+			<%= link_to 'Delete', inv_path(@inv), method: :delete, data: {confirm: 'Are you sure?'} %>
+		</div>
+	</div>
+</div>
