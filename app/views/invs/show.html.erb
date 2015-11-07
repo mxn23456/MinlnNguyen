@@ -16,11 +16,13 @@
 
 				<div align="center">
 					<h3 align="center">New Transaction</h3>
-					<%= form_for :inv_tran do |f| %>
+					<%= form_for :inv_tran,url: inv_inv_trans_path(params[:id]) do |f| %>
 					Amount</br>
-					<%= f.text_field :amount %> </br>
+					<%= f.number_field :amount %> </br>
 					Description</br>
 					<%= f.text_field :transaction_desc %> </br>
+					<%#= f.date_select :transaction_date, { :discard_day => true, :discard_month => true, :discard_year => true } %> 
+					<%= f.date_select :transaction_date%> 
 					<%= f.submit  "Save" %>
 					<% end %>
 				</div>
