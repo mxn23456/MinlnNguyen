@@ -3,7 +3,11 @@
 		<h3 align="center"><%= @inv.inv_desc %></h3>
 
 		<p align="center">
+		<% if @inv.image.exists? %>
 		<%= image_tag @inv.image.url(:medium)%>
+		<% else %>
+		<%= image_tag "http://placehold.it/250x250" %>
+		<% end %> 
 		</p>
 
 		<%#= render 'mobile_form'  %>
