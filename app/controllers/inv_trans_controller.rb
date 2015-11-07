@@ -28,7 +28,14 @@ class InvTransController < ApplicationController
 		#@inv_tran = @inv.inv_trans.new(inv_tran_params)
 		@inv_tran = @inv.inv_trans.new
 		@inv_tran[:transaction_desc] = inv_tran_params[:transaction_desc]
-		@inv_tran[:transaction_date] = inv_tran_params[:transaction_date]
+		if(!inv_tran_params["transaction_date(1i)"].nil? and 
+		   !inv_tran_params["transaction_date(2i)"].nil? and
+		   !inv_tran_params["transaction_date(3i)"].nil?)
+			date = Date.new(inv_tran_params["transaction_date(1i)"].to_i, inv_tran_params["transaction_date(2i)"].to_i, inv_tran_params["transaction_date(3i)"].to_i)
+			@inv_tran[:transaction_date] = date
+		else
+			@inv_tran[:transaction_date] = inv_tran_params[:transaction_date]
+		end
 		@inv_tran[:amount] = inv_tran_params[:amount]
 
 		respond_to do |format|

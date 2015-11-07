@@ -1,19 +1,20 @@
 <div class="container">
 	<div class="row"> <p id="notice"><%= notice %></p> 
-		<h3 align="center"><%= @inv.inv_desc %></h3>
+		<div class="well">
+			<h3 align="center"><%= @inv.inv_desc %></h3>
 
-		<p align="center">
-		<% if @inv.image.exists? %>
-		<%= image_tag @inv.image.url(:medium)%>
-		<% else %>
-		<%= image_tag "http://placehold.it/250x250" %>
-		<% end %> 
-		</p>
+			<p align="center">
+			<% if @inv.image.exists? %>
+			<%= image_tag @inv.image.url(:medium)%>
+			<% else %>
+			<%= image_tag "http://placehold.it/250x250" %>
+			<% end %> 
+			</p>
+		</div>
 
 		<%#= render 'mobile_form'  %>
 		<div class="container">
 			<div class="well">
-
 				<div align="center">
 					<h3 align="center">New Transaction</h3>
 					<%= form_for :inv_tran,url: inv_inv_trans_path(params[:id]) do |f| %>
@@ -21,8 +22,7 @@
 					<%= f.number_field :amount %> </br>
 					Description</br>
 					<%= f.text_field :transaction_desc %> </br>
-					<%#= f.date_select :transaction_date, { :discard_day => true, :discard_month => true, :discard_year => true } %> 
-					<%= f.date_select :transaction_date%> 
+					<%= f.date_select :transaction_date%> </br>
 					<%= f.submit  "Save" %>
 					<% end %>
 				</div>
@@ -30,7 +30,6 @@
 		</div> <!--/container-->
 
 		<div class="well">
-
 			<h1 align="center">Transactions </h1>
 			<div class="table-responsive">
 				<table class="table table-condensed">
