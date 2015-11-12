@@ -44,4 +44,8 @@ Rails.application.configure do
 
   # Let paperclip know where to look for ImageMagik's utilies
   Paperclip.options[:command_path] = "/usr/local/bin/" 
+
+  # Set up mailer for devise, using local mailer for now.NOTE For deployment, consider using gmail, or heroku's mailer, if applied
+  # In production, :host should be set to the actual host of your application.
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
