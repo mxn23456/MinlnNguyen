@@ -40,7 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   # Dump schema after migrations.
-  config.active_record.dump_schema_after_migration = true
+  #config.active_record.dump_schema_after_migration = true
 
   # Let paperclip know where to look for ImageMagik's utilies
   Paperclip.options[:command_path] = "/usr/local/bin/" 

@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
-  def home
-  end
+	skip_before_filter :authenticate_user!
+	def home
+	end
 
-  def about
-  end
+	def about
+	end
+
+	def blog
+	end
 end

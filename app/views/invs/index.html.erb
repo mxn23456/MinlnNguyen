@@ -37,9 +37,9 @@
 										<div class="col-sm-3">
 											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
 												<% if @last8Invs[currentIndex].image.exists? %>
-												<%= image_tag @last8Invs[currentIndex].image.url(:medium), size: "250x250"	%>
+												<%= image_tag(@last8Invs[currentIndex].image.url(:medium), size: "250x250",class: "img-responsive")	%>
 												<% else %>
-												<%= image_tag "http://placehold.it/250x250" %>
+												<%= image_tag("http://placehold.it/250x250",class: "img-responsive") %>
 												<% end %> 
 												<p align="center"> <%= @last8Invs[currentIndex].inv_desc %></p>
 											<% end %>
@@ -54,9 +54,9 @@
 										<div class="col-sm-3">
 											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
 												<% if @last8Invs[currentIndex].image.exists? %>
-												<%= image_tag @last8Invs[currentIndex].image.url(:medium),size: "250x250" %>
+												<%= image_tag(@last8Invs[currentIndex].image.url(:medium),size: "250x250",class: "img-responsive") %>
 												<% else %>
-												<%= image_tag "http://placehold.it/250x250" %>
+												<%= image_tag("http://placehold.it/250x250",class: "img-responsive") %>
 												<% end %> 
 												<p align="center"> <%= @last8Invs[currentIndex].inv_desc %></p>
 											<% end %>
