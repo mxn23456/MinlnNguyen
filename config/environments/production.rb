@@ -5,9 +5,9 @@ Rails.application.configure do
 	config.paperclip_defaults = {
 		:storage => :s3,
 		:s3_credentials => {
-			:bucket => ENV['mxnguyen-accounting-app'],
-			:access_key_id => ENV['AKIAIWB4Z5K4AKQPQ3HA'] ,
-			:secret_access_key => ENV['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']
+			:bucket => ENV['AWS_BUCKET'],
+			:access_key_id => ENV['AWS_ACCESS_KEY_ID'] ,
+			:secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 		}
 	}
 
