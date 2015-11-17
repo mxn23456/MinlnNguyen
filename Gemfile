@@ -16,6 +16,9 @@ end
 # Use paperclip to attach images
 gem "paperclip", "~> 4.3"
 
+# Use amazon s3 for web storage
+gem 'aws-sdk'
+
 # Use SCSS for stylesheets
 gem 'sass-rails' 
 # Use Uglifier as compressor for JavaScript assets

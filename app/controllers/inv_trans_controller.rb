@@ -68,7 +68,7 @@ class InvTransController < ApplicationController
 	def destroy
 		@inv_tran.destroy
 		respond_to do |format|
-			format.html { redirect_to inv_inv_trans_url(@inv), notice: 'Inv tran was successfully destroyed.' }
+			format.html { redirect_to inv_url(@inv), notice: 'Inv tran was successfully destroyed.' }
 			format.json { head :no_content }
 		end
 	end

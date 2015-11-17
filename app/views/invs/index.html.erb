@@ -23,7 +23,6 @@
 		</div>
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
-			<h1 class="page-header">Dashboard</h1>
 			<h2 class="sub-header" align="center">Recent Activities</h2>
 			<div class="container">
 				<div class="col-md-12">
@@ -37,7 +36,8 @@
 										<div class="col-sm-3">
 											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
 												<% if @last8Invs[currentIndex].image.exists? %>
-												<%= image_tag(@last8Invs[currentIndex].image.url(:medium), size: "250x250",class: "img-responsive")	%>
+												<%= image_tag(@last8Invs[currentIndex].image.url(:medium),class: "img-responsive")	%>
+												<%#= image_tag(@last8Invs[currentIndex].image.url(:medium), size: "250x250",class: "img-responsive")	%>
 												<% else %>
 												<%= image_tag("http://placehold.it/250x250",class: "img-responsive") %>
 												<% end %> 
@@ -74,7 +74,19 @@
 					<!--/well-->
 				</div>
 			</div>
-		
+
+			<div class="span7 text-center">
+				<h2> Quick Adding </h2>
+				<form> 
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Select Investment first, then transaction amount, and then transaction description">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"> Add </button>
+						</span>
+					</div>
+				</form>
+			</div>
+	
 			<h2 class="sub-header" id="month_year_selector">Cash Flow for 
 				<%= select_month(Date.today, options = {},
 				html_options = {:onchange => "updateCashFlow($('#date_year option:selected').val(), $('#date_month option:selected').val())"}) %>
@@ -111,7 +123,7 @@
 				</table>
 			</div>
 
-			<h2 class="sub-header">Listing of Investments</h2>
+			<h2 class="sub-header">Investments <%= link_to(content_tag(:button, "New", class: "btn btn-primary"),new_inv_path) %></h2>
 			<div class="table-responsive" id="invs_all">
 				<table class="table table-striped">
 					<thead>
