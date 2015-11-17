@@ -17,7 +17,7 @@ end
 gem "paperclip", "~> 4.3"
 
 # Use amazon s3 for web storage
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails' 
