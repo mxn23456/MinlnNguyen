@@ -6,6 +6,10 @@ ruby '2.2.3'
 gem 'rails', '4.2.4'
 
 # use postgres db
+#
+
+# use simple token authentication
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', :group => [:development,:test]
