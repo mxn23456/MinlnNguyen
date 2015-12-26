@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_filter  :verify_authenticity_token
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user! #TODO Fix the bug in simple_authorization_token
+  #NOTE temporary commenting out for developing ios app
+#  before_action :authenticate_user! #TODO Fix the bug in simple_authorization_token
   
 
 
