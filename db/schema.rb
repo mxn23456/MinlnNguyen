@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107195722) do
+ActiveRecord::Schema.define(version: 20151120182148) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image_file_name"
@@ -31,25 +31,6 @@ ActiveRecord::Schema.define(version: 20151107195722) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
-
-  create_table "investment_transactions", force: :cascade do |t|
-    t.integer  "amount"
-    t.string   "transaction_desc"
-    t.date     "transaction_date"
-    t.string   "investment_desc"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "investment_id"
-  end
-
-  create_table "investments", id: false, force: :cascade do |t|
-    t.string   "investment_desc", null: false
-    t.text     "notes"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "investments", ["investment_desc"], name: "index_investments_on_investment_desc", unique: true
 
   create_table "invs", force: :cascade do |t|
     t.string   "inv_desc",           null: false
@@ -76,8 +57,10 @@ ActiveRecord::Schema.define(version: 20151107195722) do
     t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
