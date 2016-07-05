@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-#ruby '2.2.3' #ruby version in Ubuntu
-ruby '2.3.1' #ruby version in Macbook
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
