@@ -1,5 +1,6 @@
 class InvsController < ApplicationController
 	before_action :set_inv, only: [:show, :edit, :update, :destroy]
+    #acts_as_token_authentication_handler_for User 
 
 	# GET /invs
 	# GET /invs.json

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  #devise_for :users
+devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"} #NOTE copied from the token-api-demo
 #	resources :investments, :constraints => { :id => /[^\/]+/ }
 
 	#  get 'pages/home'

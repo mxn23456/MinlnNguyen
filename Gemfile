@@ -10,7 +10,7 @@ gem 'rails', '4.2.4'
 #
 
 # use simple token authentication
-gem 'simple_token_authentication', '~> 1.0' # see semver.org
+#gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', :group => [:development,:test]

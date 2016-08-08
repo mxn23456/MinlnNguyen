@@ -32,7 +32,7 @@
 								<% currentIndex = 0 %>
 								<div class="item active">
 									<div class="row">
-										<% while currentIndex < 4 %>
+										<% while currentIndex < 4 and currentIndex < @last8Invs.length %>
 										<div class="col-sm-3">
 											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
 												<% if @last8Invs[currentIndex].image.exists? %>
@@ -50,7 +50,7 @@
 								</div>
 								<div class="item">
 									<div class="row">
-										<% while currentIndex < 8 %>
+										<% while currentIndex < 8 and currentIndex < @last8Invs.length %>
 										<div class="col-sm-3">
 											<%= link_to inv_path(@last8Invs[currentIndex]) do %>
 												<% if @last8Invs[currentIndex].image.exists? %>
