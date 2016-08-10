@@ -49,7 +49,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 # Use Devise for authentication
-#gem 'devise'
+gem 'devise'
 
 
 # Use Unicorn as the app server

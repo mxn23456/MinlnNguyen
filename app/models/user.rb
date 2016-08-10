@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 #       :recoverable, :rememberable, :trackable, :validatable
 
        #NOTE the follwoing are copied from devise-api-demo
-       acts_as_token_authenticatable
+#       acts_as_token_authenticatable
        devise :database_authenticatable, :registerable
 
        has_many :invs
