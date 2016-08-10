@@ -7,7 +7,7 @@ gem 'rails', '4.2.4'
 
 
 # use simple token authentication
-gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
+#gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
 
 gem 'cancan'
 
@@ -49,7 +49,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 # Use Devise for authentication
-gem 'devise'
+#gem 'devise'
 
 
 # Use Unicorn as the app server
