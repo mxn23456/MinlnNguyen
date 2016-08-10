@@ -5,11 +5,11 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
-# use postgres db
-#
 
 # use simple token authentication
-#gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
+gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
+
+gem 'cancan'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', :group => [:development,:test]

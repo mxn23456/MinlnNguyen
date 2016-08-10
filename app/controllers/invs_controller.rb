@@ -1,12 +1,17 @@
 class InvsController < ApplicationController
 	before_action :set_inv, only: [:show, :edit, :update, :destroy]
-    #acts_as_token_authentication_handler_for User 
+    load_and_authorize_resource
 
 	# GET /invs
 	# GET /invs.json
 	def index
 		@invs = Inv.all
 		@last8Invs = Inv.get_recent_invs(8)
+        respond_to do |format|
+            format.json do
+                render :json =>  {invs: @invs}
+            end
+        end
 	end
 
 	# POST /invs/get_month_of_year_transactions.json

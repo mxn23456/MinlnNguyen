@@ -52,6 +52,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
+    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -151,6 +152,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_token_authentication (1.14.0)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     spring (1.7.2)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
@@ -189,6 +194,7 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   bootstrap-sass (~> 3.3.1)
   byebug
+  cancan
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
@@ -198,6 +204,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   sass-rails
   sdoc (~> 0.4.0)
+  simple_token_authentication (~> 1.0)
   spring
   sqlite3
   turbolinks

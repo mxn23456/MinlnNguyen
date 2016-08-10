@@ -53,6 +53,8 @@ devise_for :users, :controllers => {:registrations => "registrations", :sessions
 #		resources :investment_transactions
 #	end
 
+resources :invs, :defaults => { :format => 'json'} #NOTE copied from devise-api-demo
+
   resources :invs do
 	  resources :inv_trans
 	  resources :images
