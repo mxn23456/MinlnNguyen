@@ -56,23 +56,22 @@
 #    username: mitchell
 #    password: P@ssw0rd
 development:
-    #  <<: *default
-    adapter: sqlite3
-    pool: 5
-    timeout: 5000
-    database: db/development.sqlite3
+        adapter: sqlite3
+        pool: 5
+        timeout: 5000
+        database: db/development.sqlite3
 
 
-    #test:
-    #    adapter: postgresql
-    #    encoding: unicode
-    #    database: webapp 
-    #    pool: 5
-    #    username: mitchell
-    #    password: P@ssw0rd
+#test:
+#    adapter: postgresql
+#    encoding: unicode
+#    database: webapp 
+#    pool: 5
+#    username: mitchell
+#    password: P@ssw0rd
 
-    production:
-        #    <<: *default
+production:
+        adapter: postgresql
         database: webapp
         username: myapp 
         password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>

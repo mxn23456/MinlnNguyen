@@ -1,21 +1,21 @@
 
-<%= form_for(@inv, html: {multipart: true}) do |f| %>
-  <% if @inv.errors.any? %>
+<%= form_for @user_inv, html: {multipart: true},url: post_inv_path do |f| %>
+  <% if @user_inv.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@inv.errors.count, "error") %> prohibited this inv from being saved:</h2>
+      <h2><%= pluralize(@user_inv.errors.count, "error") %> prohibited this inv from being saved:</h2>
 
       <ul>
-      <% @inv.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @user_inv.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
-<% end %>
+  <% end %>
 
-<div align="center" class="field">
-	 <%= f.label :image%><br>
+  <div align="center" class="field">
+    <%= f.label :image%><br>
     <%= f.file_field :image%>
-</div>
+  </div>
 
   <div class="field">
     <%= f.label :inv_desc %><br>

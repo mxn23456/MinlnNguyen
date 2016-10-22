@@ -1,84 +1,20 @@
-Rails.application.routes.draw do
-  #devise_for :users
-devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"} #NOTE copied from the token-api-demo
-#	resources :investments, :constraints => { :id => /[^\/]+/ }
+Rails.application.routes.draw do 
 
-	#  get 'pages/home'
 
-	#fix the period on the route's parameter. Ex: Nissan Altima 2.5s. Not sure where to put	
-	#match 'some_action/:id' => 'controller#action', :constraints  => { :id => /[0-z\.]+/ }
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
-	get 'pages/about'
+  root 'pages#home'
 
-	get 'pages/blogs'
-
-	post 'invs/get_month_of_year_transactions'
-
-	post 'invs/get_recent_invs'
-
-	# The priority is based upon order of creation: first created -> highest priority.
-	# See how all your routes lay out with "rake routes".
-
-	# You can have the root of your site routed with "root"
-	root 'pages#home'
-
-	# Example of regular route:
-	#   get 'products/:id' => 'catalog#view'
-
-	# Example of named route that can be invoked with purchase_url(id: product.id)
-	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-	# Example resource route (maps HTTP verbs to controller actions automatically):
-	#   resources :products
-
-	# Example resource route with options:
-	#   resources :products do
-	#     member do
-	#       get 'short'
-	#       post 'toggle'
-	#     end
-	#
-	#     collection do
-	#       get 'sold'
-	#     end
-	#   end
-
-	# Example resource route with sub-resources:
-	#   resources :products do
-	#     resources :comments, :sales
-	#     resource :seller
-	#   end
-	#
-#	resources :investments, :constraints => { :id => /[^\/]+/ } do
-#		resources :investment_transactions
-#	end
-
-resources :invs, :defaults => { :format => 'json'} #NOTE copied from devise-api-demo
-
-  resources :invs do
-	  resources :inv_trans
-	  resources :images
+  resources :users do
+    resources :invs do
+      resources :inv_trans
+      resources :images
+      delete "delete_inv", to: "invs#destroy"
+    end
+    post 'invs/get_month_of_year_transactions', contraints: {format: 'json'}
   end
 
-	# Example resource route with more complex sub-resources:
-	#   resources :products do
-	#     resources :comments
-	#     resources :sales do
-	#       get 'recent', on: :collection
-	#     end
-	#   end
-
-	# Example resource route with concerns:
-	#   concern :toggleable do
-	#     post 'toggle'
-	#   end
-	#   resources :posts, concerns: :toggleable
-	#   resources :photos, concerns: :toggleable
-
-	# Example resource route within a namespace:
-	#   namespace :admin do
-	#     # Directs /admin/products/* to Admin::ProductsController
-	#     # (app/controllers/admin/products_controller.rb)
-	#     resources :products
-	#   end
+  post "post_inv", to: "invs#create"
+  post "post_inv_tran", to: "inv_trans#create"
+  patch "update_inv_image", to: "invs#save_image"
 end

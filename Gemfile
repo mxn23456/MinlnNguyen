@@ -1,27 +1,26 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.3.1' #NOTE Mac-book ruby version
+#ruby '2.2.3' #NOTE Ubuntu ruby version
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
 
-# use simple token authentication
-#gem 'simple_token_authentication', '~> 1.0' # see semver.org NOTE remove to test new token method
-
-gem 'cancan'
-
-# Use sqlite3 as the database for Active Record
+# Use sqlite3 as the database for development
 gem 'sqlite3', :group => [:development,:test]
-group :production do
-	gem 'pg'
-end
+
+# Use posgres as the database for production
+gem 'pg', :group => :production
 
 # Use paperclip to attach images
-gem "paperclip", "~> 4.3"
+gem "paperclip", "~> 5.0.0"
 
 # Use amazon s3 for web storage
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '~> 2.3'
+
+# Use this gem to manage environment variables. See http://railsapps.github.io/rails-environment-variables.html
+gem 'figaro'
 
 # Use SCSS for stylesheets
 gem 'sass-rails' 
@@ -41,16 +40,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Use bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 # Use Devise for authentication
 gem 'devise'
-
 
 # Use Unicorn as the app server
 gem 'unicorn'
@@ -59,15 +54,15 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+gem 'byebug'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring'
 end
 

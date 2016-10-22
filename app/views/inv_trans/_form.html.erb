@@ -1,4 +1,5 @@
-<%= form_for(@inv_tran, method: :post, url:inv_inv_trans_path(params[:inv_id])) do |f| %>
+<%#= form_for @inv_tran, url:inv_inv_trans_path(:user_id => current_user.id, :inv_id => @inv.id) do |f| %>
+  <%= form_for @inv_tran, :controller => "inv_trans", :action => "create"  do |f| %>
   <% if @inv_tran.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inv_tran.errors.count, "error") %> prohibited this inv_tran from being saved:</h2>
