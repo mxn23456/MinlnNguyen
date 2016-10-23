@@ -1,16 +1,17 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
+    <div class="col-sm-3 col-md-2 sidebar"> <!--begin sidebar -->
       <ul class="nav nav-sidebar" id="navSidebar">
         <li class="active" id= "overview_link"><a href="#recent_activities">Recent Activities</a></li>
         <li id="report_link"><a href="#month_year_selector">Cash Flow Report</a></li>
         <li id="investments_link"><a href="#investments_display">All Investments<span class="sr-only">(current)</span></a></li>
+        <li id="iPhone_note_link"><a href="#iPhone_note">Parse iPhone Note</a></li>
       </ul>
-    </div>
+    </div> <!-- end side bar -->
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main"> <!---begin main -->
       <h2 class="sub-header" align="left" id="recent_activities">Recent Activities</h2>
-      <div class="container" >
+      <div class="container" > <!-- begin recent activities -->
         <div class="col-md-12">
           <div class="well">
 
@@ -68,6 +69,7 @@
           </div> <!-- end well -->
         </div>
       </div>
+      <!-- end recent activities  -->
 
       <h2 class="sub-header" id="month_year_selector">Cash Flow for 
         <%= select_month(Date.today, options = {},
@@ -86,7 +88,7 @@
                          <%		end %>
                          <%		@net= @income + @expense %>
                        <%	end %> 
-                       <div class="table-responsive">
+                       <div class="table-responsive"> <!-- begin cash flow table -->
                          <table class="table table-striped" id="cash_flow_table">
                            <thead>
                              <tr>
@@ -104,9 +106,10 @@
                            </tbody>
                          </table>
                        </div>
+                       <!-- end cash flow table -->
 
                        <h2 class="sub-header" id="investments_display">Investments <%= link_to(content_tag(:button, "New", class: "btn btn-primary"),new_user_inv_path) %></h2>
-                       <div class="table-responsive" id="invs_all">
+                       <div class="table-responsive" id="invs_all"> <!-- begin investments table -->
                          <table class="table table-striped">
                            <thead>
                              <tr>
@@ -130,7 +133,24 @@
                            </tbody>
                          </table>
                        </div>
+                       <!-- end investments table -->
+
+                       <h2 align="left" id="iPhone_note"> iPhone Note</h2>
+
+                       <div class="container"> <!-- begin iPhone notes -->
+                         <div align="center">
+                           <textarea rows="30" cols="175"></textarea>
+                           <br>
+                           <button>Parse Note</button>
+                           <button >Upload Note</button>
+                         </div> 
+                       </div> 
+                       <!-- end iPhone notes -->
+
+
                      </div>
                    </div>
                  </div>
+
+
 
